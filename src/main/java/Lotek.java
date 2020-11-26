@@ -5,22 +5,19 @@ public class Lotek implements Game {
 
     Scanner scanner = new Scanner(System.in);
     private List<Integer> givenNumberByUser = new ArrayList<>();
-    private List<Integer> lotteryNumbers = new ArrayList<>();
+    private final List<Integer> lotteryNumbers = new ArrayList<>();
 
     @Override
     public void play() {
-
         instruction();
         userInputAndCheckCorrectness();
         randomNumberBySystem();
-        gameMesseage(lotteryNumbers, givenNumberByUser);
-        ifUserWin();
+        gameMessage(lotteryNumbers, givenNumberByUser);
+        checkIfUserWin();
 
     }
 
-
     public void userInputAndCheckCorrectness() {
-
         while (givenNumberByUser.size() != 6) {
             try {
                 String[] givenNumberInString = scanner.nextLine()
@@ -55,12 +52,12 @@ public class Lotek implements Game {
     public void randomNumberBySystem() {
         Random rand = new Random();
         for (int i = 1; i <= 6; i++) {
-//            lotteryNumbers.add(rand.nextInt(98) + 1);
+            lotteryNumbers.add(rand.nextInt(98) + 1);
             lotteryNumbers.add(i);
         }
     }
 
-    public void ifUserWin() {
+    public void checkIfUserWin() {
         Collections.sort(lotteryNumbers);
         Collections.sort(givenNumberByUser);
         if (lotteryNumbers.equals(givenNumberByUser)) {
@@ -70,7 +67,7 @@ public class Lotek implements Game {
         }
     }
 
-    public void gameMesseage(List<Integer> loterryNumbers, List<Integer> givenNumberByUser) {
+    public void gameMessage(List<Integer> loterryNumbers, List<Integer> givenNumberByUser) {
         System.out.println();
         System.out.println("This are the numbers drawn by lot: ");
         System.out.println(loterryNumbers.stream().
@@ -90,14 +87,3 @@ public class Lotek implements Game {
         System.out.println();
     }
 }
-
-/*
-    Na rozgrzewkę i sprawdzenie jak piszecie kod, proszę napisać aplikację w Javie, która będzie zbiorem kilku mini gier. Pierwszą mini grą, którą zaimplementujemy będzie Lotek. Za jakiś czas dodamy do aplikacji kolejną mini grę i potem kolejną i kolejną. Dlatego warto się zastanowić nad architekturą aplikacji. Podpowiem, że można tutaj skorzystać z interfejsów 🙂
-        Scenariusz działania mini gry Lotek:
-        Użytkownik wpisuje 6 liczb.
-        Następuje losowanie.
-        Na ekranie wyświetlają się wylosowane liczby i te podane przez użytkownika wraz z informacją czy udało mu się wygrać 🙂
-        Założenia mini gry Lotek:
-        W konsoli powinno wyświetlić się 6 losowych liczb z zakresu od 1-99. Niech to będzie najprościej napisana aplikacja, zobaczymy co tam potraficie 😉
-        Powinni być obsłużone sytuację niedozwolone i użytkownik powinien dostać informacje, że np. podał ujemną liczbę lub liczbę spoza zakresu.
-*/

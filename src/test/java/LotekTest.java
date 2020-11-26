@@ -10,22 +10,18 @@ import static org.assertj.core.api.Assertions.byLessThan;
 
 public class LotekTest {
 
-    @BeforeEach
-    public static void initClassLotek() {
-        Lotek lotek = new Lotek();
-
-    }
+    //TODO try implement Test for correctness of given number by user
 
     @Test
     public void shouldReturnCorrectNumbers() {
 
         //Given
-        initClassLotek();
+        Lotek lotek = new Lotek();
+
         //When
         List<Integer> userNumber = Arrays.asList(11,49,5,91,20,72);
-        List<Integer> randomNumberOfSystem = Arrays.asList(11, 49, 5, 91, 20, 72);
-        Lotek lotek = new Lotek();
-        lotek.ifUserWin();
+//        lotek.checkIfUserWin();
+//        lotek.randomNumberBySystem();
 
         //Then
 //        assertThat(userNumber).isEqualTo()
